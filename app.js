@@ -96,6 +96,20 @@ app.route("/articles/:articleTitle")
         }
     );
 
+})
+
+.patch(function(req, res){
+    Article.replaceOne(
+        {title: req.params.articleTitle},
+        {$set: req.body},
+        function(err){
+            if (!err){
+                res.send("Successfully Updated Article")
+            } else {
+                res.send(err);
+            }
+        }
+    );
 });
 
 
